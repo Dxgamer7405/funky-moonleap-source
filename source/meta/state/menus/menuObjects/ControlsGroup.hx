@@ -206,7 +206,7 @@ class ControlsGroup extends MusicBeatGroup
 		}
 		
 		#if mobile
-		addVirtualPad(UP_DOWN, A_B);
+		addVirtualPad(LEFT_RIGHT, A_B);
 		#end
 		
 		changeHorizontal();

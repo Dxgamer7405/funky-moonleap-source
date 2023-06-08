@@ -38,6 +38,7 @@ class OptionsGroup extends MusicBeatGroup
 				'preferences',
 				'appearence',
 				'controls',
+				'android controls'
 				'accessibility',
 				'adjust offset',
 				'reset save data',
@@ -139,6 +140,10 @@ class OptionsGroup extends MusicBeatGroup
 						else
 							GlobalMenuState.nextMenu = new ControlsGroup();
 						alive = false;
+						
+					case 'android controls':
+						FlxG.sound.music.stop();
+						MusicBeat.switchState(new MobileControlsSubState());
 						
 					case 'adjust offset':
 						FlxG.sound.music.stop();
