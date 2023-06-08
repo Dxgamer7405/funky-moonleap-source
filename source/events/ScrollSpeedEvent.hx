@@ -23,9 +23,9 @@ class ScrollSpeedEvent
 		
 		var jsonPath:String = Paths.getPath('speed-changes/$curSong.json', TEXT);
 		
-		if(FileSystem.exists(jsonPath))
+		if(Util.exists(jsonPath))
 		{
-			var fuck:ScrollChangeData = cast Json.parse(File.getContent(jsonPath).trim());
+			var fuck:ScrollChangeData = cast Json.parse(Util.getContent(jsonPath).trim());
 			
 			for(i in fuck.data)
 			{
