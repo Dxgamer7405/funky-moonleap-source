@@ -14,7 +14,6 @@ import meta.data.dependency.FNFUIState;
 #if mobile
 import mobile.MobileControls;
 import mobile.flixel.FlxVirtualPad;
-import mobile.flixel.FlxHitbox;
 import flixel.FlxCamera;
 import flixel.input.actions.FlxActionInput;
 import flixel.util.FlxDestroyUtil;
@@ -44,12 +43,8 @@ class MusicBeatState extends FNFUIState
 	#if mobile
 	var mobileControls:MobileControls;
 	var virtualPad:FlxVirtualPad;
-	var hitbox:FlxHitbox;
-	var trackedInputsHitbox:Array<FlxActionInput> = [];
 	var trackedInputsMobileControls:Array<FlxActionInput> = [];
 	var trackedInputsVirtualPad:Array<FlxActionInput> = [];
-
-	var hitboxDiff:Dynamic;
 
 	public function addVirtualPad(DPad:FlxDPadMode, Action:FlxActionMode)
 	{
@@ -73,12 +68,12 @@ class MusicBeatState extends FNFUIState
 			remove(virtualPad);
 	}
 
-	public function addMobileControls(usesDodge:Bool = false, DefaultDrawTarget:Bool = true)
+	public function addMobileControls(DefaultDrawTarget:Bool = true)
 	{
 		if (mobileControls != null)
 			removeMobileControls();
 
-		mobileControls = new MobileControls(usesDodge);
+		mobileControls = new MobileControls();
 
 		switch (MobileControls.mode)
 		{
@@ -87,12 +82,7 @@ class MusicBeatState extends FNFUIState
 			case 'Pad-Duo':
 				controls.setVirtualPadNOTES(mobileControls.virtualPad, BOTH_FULL, NONE);
 			case 'Hitbox':
-			if(usesDodge){
-				controls.setHitBox(mobileControls.hitbox, SPACE);
-			}else{
-			  controls.setHitBox(mobileControls.hitbox, DEFAULT);
-			}
-				
+				controls.setHitBox(mobileControls.hitbox);
 			case 'Keyboard': // do nothing
 		}
 
@@ -127,55 +117,11 @@ class MusicBeatState extends FNFUIState
 			virtualPad.cameras = [camControls];
 		}
 	}
-
-	public function addHitbox(?usesDodge = false):Void
-	{
-		if (hitbox != null)
-			removeHitbox();
-
-		if (usesDodge) {
-			hitbox = new FlxHitbox(SPACE);
-			hitbox.visible = visible;
-			add(hitbox);
-			hitboxDiff = SPACE;
-		} else {
-			hitbox = new FlxHitbox(DEFAULT);
-			hitbox.visible = visible;
-			hitboxDiff = DEFAULT;
-		}
-
-		controls.setHitBox(hitbox, hitboxDiff);
-		trackedInputsHitbox = controls.trackedInputsNOTES;
-		controls.trackedInputsNOTES = [];
-	}
-
-	public function addHitboxCamera(DefaultDrawTarget:Bool = true):Void
-	{
-		if (hitbox != null)
-		{
-			var camControls:FlxCamera = new FlxCamera();
-			FlxG.cameras.add(camControls, DefaultDrawTarget);
-			camControls.bgColor.alpha = 0;
-			hitbox.cameras = [camControls];
-		}
-	}
-
-	public function removeHitbox():Void
-	{
-		if (trackedInputsHitbox.length > 0)
-			controls.removeVirtualControlsInput(trackedInputsHitbox);
-
-		if (hitbox != null)
-			remove(hitbox);
-	}
 	#end
 
 	override function destroy()
 	{
 		#if mobile
-		if (trackedInputsHitbox.length > 0)
-			controls.removeVirtualControlsInput(trackedInputsHitbox);
-
 		if (trackedInputsMobileControls.length > 0)
 			controls.removeVirtualControlsInput(trackedInputsMobileControls);
 
@@ -191,9 +137,6 @@ class MusicBeatState extends FNFUIState
 
 		if (mobileControls != null)
 			mobileControls = FlxDestroyUtil.destroy(mobileControls);
-
-		if (hitbox != null)
-			hitbox = FlxDestroyUtil.destroy(hitbox);
 		#end
 	}
 
@@ -323,13 +266,9 @@ class MusicBeatSubState extends FlxSubState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
-	#if mobile
-	var hitbox:FlxHitbox;
+		#if mobile
 	var virtualPad:FlxVirtualPad;
-	var trackedInputsHitbox:Array<FlxActionInput> = [];
 	var trackedInputsVirtualPad:Array<FlxActionInput> = [];
-
-	var hitboxDiff:Dynamic;
 
 	public function addVirtualPad(DPad:FlxDPadMode, Action:FlxActionMode)
 	{
@@ -363,58 +302,11 @@ class MusicBeatSubState extends FlxSubState
 			virtualPad.cameras = [camControls];
 		}
 	}
-
-	public function addHitbox(?usesDodge = false):Void
-	{
-		if (hitbox != null)
-			removeHitbox();
-
-		if (hitbox != null)
-			removeHitbox();
-
-		if (usesDodge) {
-			hitbox = new FlxHitbox(SPACE);
-			hitbox.visible = visible;
-			add(hitbox);
-			hitboxDiff = SPACE;
-		} else {
-			hitbox = new FlxHitbox(DEFAULT);
-			hitbox.visible = visible;
-			hitboxDiff = DEFAULT;
-		}
-
-		controls.setHitBox(hitbox, hitboxDiff);
-		trackedInputsHitbox = controls.trackedInputsNOTES;
-		controls.trackedInputsNOTES = [];
-	}
-
-	public function addHitboxCamera(DefaultDrawTarget:Bool = true):Void
-	{
-		if (hitbox != null)
-		{
-			var camControls:FlxCamera = new FlxCamera();
-			FlxG.cameras.add(camControls, DefaultDrawTarget);
-			camControls.bgColor.alpha = 0;
-			hitbox.cameras = [camControls];
-		}
-	}
-
-	public function removeHitbox():Void
-	{
-		if (trackedInputsHitbox.length > 0)
-			controls.removeVirtualControlsInput(trackedInputsHitbox);
-
-		if (hitbox != null)
-			remove(hitbox);
-	}
 	#end
 
 	override function destroy()
 	{
 		#if mobile
-		if (trackedInputsHitbox.length > 0)
-			controls.removeVirtualControlsInput(trackedInputsHitbox);
-
 		if (trackedInputsVirtualPad.length > 0)
 			controls.removeVirtualControlsInput(trackedInputsVirtualPad);
 		#end
@@ -424,8 +316,6 @@ class MusicBeatSubState extends FlxSubState
 		#if mobile
 		if (virtualPad != null)
 			virtualPad = FlxDestroyUtil.destroy(virtualPad);
-		if (hitbox != null)
-			hitbox = FlxDestroyUtil.destroy(hitbox);
 		#end
 	}
 
