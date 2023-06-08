@@ -36,10 +36,6 @@ class OptionsSubstate extends MusicBeatSubState
 		bg.antialiasing = true;
 		add(bg);
 
-    #if mobile
-    addVirtualPad(LEFT_RIGHT, A_B);
-		#end
-
 		super.create();
 
 		keyOptions = generateOptions();

@@ -59,10 +59,6 @@ class WarningState extends MusicBeatState
 		text.setFormat(Main.gFont, 32, FlxColor.fromRGB(181,165,240), CENTER);
 		text.screenCenter();
 		add(text);
-		
-		#if mobile
-		addVirtualPad(NONE, A_B);
-		#end
 	}
 	
 	override function update(elapsed:Float)

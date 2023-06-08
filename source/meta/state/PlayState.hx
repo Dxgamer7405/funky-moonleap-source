@@ -43,7 +43,6 @@ import openfl.filters.ShaderFilter;
 import openfl.media.Sound;
 import openfl.utils.Assets;
 import sys.io.File;
-import mobile.MobileControls;
 
 using StringTools;
 
@@ -717,7 +716,7 @@ class PlayState extends MusicBeatState
 		if (!inCutscene)
 		{
 			// pause the game if the game is allowed to pause and enter is pressed
-			if(controls.PAUSE #if mobile || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
+			if(controls.PAUSE && startedCountdown && canPause)
 				pauseGame();
 			
 			var pressDebug:Array<Bool> = [FlxG.keys.justPressed.SEVEN,FlxG.keys.justPressed.EIGHT];
@@ -1749,9 +1748,6 @@ class PlayState extends MusicBeatState
 
 	function startSong():Void
 	{
-		#if mobile
-    mobileControls.visible = true;
-    #end
 		startingSong = false;
 
 		previousFrameTime = FlxG.game.ticks;
@@ -2025,9 +2021,6 @@ class PlayState extends MusicBeatState
 	
 	function endSong():Void
 	{
-	  #if mobile
-    mobileControls.visible = false;
-    #end
 		canPause = false;
 		songMusic.volume = 0;
 		vocals.volume = 0;
@@ -2238,7 +2231,7 @@ class PlayState extends MusicBeatState
 	function callTextbox()
 	{
 		var dialogPath = Paths.json(SONG.song.toLowerCase() + '/dialogue');
-		if (Util.exists(dialogPath))
+		if (sys.FileSystem.exists(dialogPath))
 		{
 			startedCountdown = false;
 

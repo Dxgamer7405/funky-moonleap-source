@@ -42,7 +42,7 @@ class FreeplayGroup extends MusicBeatGroup
 		GlobalMenuState.spawnMenu = groupName = 'freeplay';
 		
 		// foda
-		#if desktop
+		#if !html5
 		Discord.changePresence('FREEPLAY MENU', 'Main Menu');
 		#end
 		
@@ -135,10 +135,6 @@ class FreeplayGroup extends MusicBeatGroup
 		changeSelected(false);
 		changeRow(false);
 		placeBox(true);
-
-		#if mobile
-		addVirtualPad(LEFT_FULL, A_B);
-		#end
 	}
 	
 	var placeX:Float = 0;

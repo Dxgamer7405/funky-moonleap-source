@@ -191,6 +191,11 @@ class Main extends Sprite
 
 		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/Yoshubs/Forever-Engine";
 
+		if (!FileSystem.exists("crash/"))
+			FileSystem.createDirectory("crash/");
+
+		File.saveContent(path, errMsg + "\n");
+
 		Sys.println(errMsg);
 		Sys.println("Crash dump saved in " + Path.normalize(path));
 
@@ -200,7 +205,7 @@ class Main extends Sprite
 		crashDialoguePath += ".exe";
 		#end
 
-		if (Util.exists(crashDialoguePath))
+		if (FileSystem.exists(crashDialoguePath))
 		{
 			Sys.println("Found crash dialog: " + crashDialoguePath);
 			new Process(crashDialoguePath, [path]);

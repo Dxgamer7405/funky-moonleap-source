@@ -36,7 +36,7 @@ class CreditsGroup extends MusicBeatGroup
 		super();
 		groupName = 'credits';
 		// foda
-		#if desktop
+		#if !html5
 		Discord.changePresence('CREDITS', 'Main Menu');
 		#end
 		// psych engine omg!!!
@@ -197,10 +197,6 @@ class CreditsGroup extends MusicBeatGroup
 				menuItems.add(bottomTxt);
 			}
 		}
-		
-		#if mobile
-		addVirtualPad(UP_DOWN, A_B);
-		#end
 		
 		changeSelection();
 	}

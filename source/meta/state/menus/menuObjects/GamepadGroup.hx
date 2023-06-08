@@ -17,7 +17,7 @@ class GamepadGroup extends MusicBeatGroup
 		super();
 		groupName = 'gamepad';
 		
-		#if desktop
+		#if !html5
 		Discord.changePresence('CONTROLS', 'Main Menu');
 		#end
 		
@@ -32,10 +32,6 @@ class GamepadGroup extends MusicBeatGroup
 		guide.updateHitbox();
 		guide.screenCenter(X);
 		add(guide);
-
-		#if mobile
-		addVirtualPad(NONE, B);
-		#end
 	}
 	
 	var selectedSomething:Bool = false;

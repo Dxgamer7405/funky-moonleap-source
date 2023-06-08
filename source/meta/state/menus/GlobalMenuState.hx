@@ -124,10 +124,6 @@ class GlobalMenuState extends MusicBeatState
 				}
 		}
 		gameLogo.y = FlxMath.lerp(gameLogo.y, logoY, elapsed * 8);
-		
-    #if mobile
-    addVirtualPad(LEFT_FULL, A_B);
-    #end
 	}
 	
 	// uhhh
