@@ -51,12 +51,6 @@ class MobileControlsSubState extends FlxSubState
 
 			if (controlsItems[Math.floor(curSelected)] == 'Pad-Custom')
 				MobileControls.customVirtualPad = virtualPad;
-				
-			/*if (controlsItems[Math.floor(curSelected)] != 'Hitbox' || controlsItems[Math.floor(curSelected)] != 'Keyboard' ){
-			  ClientPrefs.isvpad = true;
-			  ClientPrefs.saveSettings;
-			}*/
-			//not yet
 
 			FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
@@ -66,7 +60,6 @@ class MobileControlsSubState extends FlxSubState
 			FlxColor.BLACK, true);
 		exitButton.color = FlxColor.LIME;
 		add(exitButton);
-
 
 		resetButton = new FlxButton(exitButton.x, exitButton.y + 100, 'Reset', function()
 		{
@@ -257,7 +250,7 @@ class MobileControlsSubState extends FlxSubState
 				add(virtualPad);
 			case 'Hitbox':
 				removeControls();
-				hitbox = new FlxHitbox(DEFAULT);
+				hitbox = new FlxHitbox();
 				add(hitbox);
 			default:
 				removeControls();
