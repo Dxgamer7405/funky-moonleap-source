@@ -137,10 +137,13 @@ class OptionsGroup extends MusicBeatGroup
 				{
 					case 'controls':
 						if(SaveData.trueSettings.get('Controller Mode'))
-							#if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new GamepadGroup();
+							#if mobile 
+							removeVirtualPad();
+							GlobalMenuState.nextMenu = new GamepadGroup();
 						else
-							#if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new ControlsGroup();
+							 GlobalMenuState.nextMenu = new ControlsGroup();
 						alive = false;
+						#end
 						
 					case 'android controls':
 						FlxG.sound.music.stop();
