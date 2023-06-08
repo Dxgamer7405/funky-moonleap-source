@@ -143,7 +143,7 @@ class OptionsGroup extends MusicBeatGroup
 						
 					case 'android controls':
 						FlxG.sound.music.stop();
-						openSubState(new MobileControlsSubState());
+						FlxG.state.openSubState(new MobileControlsSubState());
 						
 					case 'adjust offset':
 						FlxG.sound.music.stop();
