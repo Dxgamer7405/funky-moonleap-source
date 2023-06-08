@@ -38,7 +38,7 @@ class OptionsGroup extends MusicBeatGroup
 				'preferences',
 				'appearence',
 				'controls',
-				'android controls'
+				'android controls',
 				'accessibility',
 				'adjust offset',
 				'reset save data',
