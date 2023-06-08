@@ -51,6 +51,7 @@ class MainMenuGroup extends MusicBeatGroup
 		
 		#if mobile
 		addVirtualPad(LEFT_FULL, A_B);
+		addVirtualPadCamera();
 		#end
 		
 		changeSelection();
@@ -117,13 +118,13 @@ class MainMenuGroup extends MusicBeatGroup
 						PlayState.campaignScore = 0;
 						Main.switchState(new PlayState());
 						
-					case 'freeplay' | 'play': GlobalMenuState.nextMenu = new FreeplayGroup();
+					case 'freeplay' | 'play': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new FreeplayGroup();
 						//Main.switchState(new meta.state.menus.FreeplayState());
-					case 'credits': GlobalMenuState.nextMenu = new CreditsGroup();
+					case 'credits': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new CreditsGroup();
 					case 'options': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new OptionsGroup();
 					case 'exit': Sys.exit(0);
 					
-					case 'debug menu': GlobalMenuState.nextMenu = new DebugMenuGroup();
+					case 'debug menu': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new DebugMenuGroup();
 					
 					case 'ost' | 'buy moonleap':
 						var link:String = (optionShit[curSelected] == 'ost') ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";

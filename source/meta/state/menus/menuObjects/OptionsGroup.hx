@@ -137,9 +137,9 @@ class OptionsGroup extends MusicBeatGroup
 				{
 					case 'controls':
 						if(SaveData.trueSettings.get('Controller Mode'))
-							GlobalMenuState.nextMenu = new GamepadGroup();
+							#if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new GamepadGroup();
 						else
-							GlobalMenuState.nextMenu = new ControlsGroup();
+							#if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new ControlsGroup();
 						alive = false;
 						
 					case 'android controls':
@@ -148,10 +148,10 @@ class OptionsGroup extends MusicBeatGroup
 						
 					case 'adjust offset':
 						FlxG.sound.music.stop();
-						Main.switchState(new AdjustOffsetState());
+						#if mobile removeVirtualPad(); #end Main.switchState(new AdjustOffsetState());
 						
 					case 'reset save data':
-						FlxG.state.openSubState(new meta.subState.DeleteSaveSubstate());
+						#if mobile removeVirtualPad(); #end FlxG.state.openSubState(new meta.subState.DeleteSaveSubstate());
 						
 					default: // it will crash it optionShit doesnt have a category for it so beware!!
 						changeCategory(choice);
