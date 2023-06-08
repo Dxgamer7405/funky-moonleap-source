@@ -120,7 +120,7 @@ class MainMenuGroup extends MusicBeatGroup
 					case 'freeplay' | 'play': GlobalMenuState.nextMenu = new FreeplayGroup();
 						//Main.switchState(new meta.state.menus.FreeplayState());
 					case 'credits': GlobalMenuState.nextMenu = new CreditsGroup();
-					case 'options': GlobalMenuState.nextMenu = new OptionsGroup();
+					case 'options': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new OptionsGroup();
 					case 'exit': Sys.exit(0);
 					
 					case 'debug menu': GlobalMenuState.nextMenu = new DebugMenuGroup();
