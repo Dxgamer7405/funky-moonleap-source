@@ -43,7 +43,6 @@ import openfl.filters.ShaderFilter;
 import openfl.media.Sound;
 import openfl.utils.Assets;
 import sys.io.File;
-import mobile.MobileControls;
 
 using StringTools;
 
@@ -388,6 +387,10 @@ class PlayState extends MusicBeatState
 		dialogueHUD = new FlxCamera();
 		dialogueHUD.bgColor.alpha = 0;
 		FlxG.cameras.add(dialogueHUD, false);
+		
+		#if mobile
+		addMobileControls(false);
+		#end
 
 		//
 		keysArray = [
@@ -1749,9 +1752,6 @@ class PlayState extends MusicBeatState
 
 	function startSong():Void
 	{
-		#if mobile
-    mobileControls.visible = true;
-    #end
 		startingSong = false;
 
 		previousFrameTime = FlxG.game.ticks;
@@ -2026,8 +2026,8 @@ class PlayState extends MusicBeatState
 	function endSong():Void
 	{
 	  #if mobile
-    mobileControls.visible = false;
-    #end
+	  mobileControls.visible = false;
+	  #end
 		canPause = false;
 		songMusic.volume = 0;
 		vocals.volume = 0;
@@ -2278,6 +2278,11 @@ class PlayState extends MusicBeatState
 	private function startCountdown():Void
 	{
 		inCutscene = false;
+		
+	  #if mobile
+	  mobileControls.visible = true;
+	  #end
+		
 		Conductor.songPosition = -(Conductor.crochet * 5);
 		swagCounter = 0;
 
