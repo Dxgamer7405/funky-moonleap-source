@@ -1505,7 +1505,7 @@ class PlayState extends MusicBeatState
 		});
 
 		// open pause substate
-		#if mobile removeVirtualPad(); #end openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		#if mobile removeVirtualPad(); removeHitbox(); #end openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 	}
 
 	override public function onFocus():Void
