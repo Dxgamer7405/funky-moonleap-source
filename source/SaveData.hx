@@ -204,7 +204,7 @@ class SaveData
 		// 10
 		'ACCEPT' => [[FlxKey.SPACE, 	FlxKey.ENTER], 						11],
 		'BACK' =>	[[X,				FlxKey.BACKSPACE,	FlxKey.ESCAPE], 12],
-		'PAUSE' => 	[[P,				FlxKey.ENTER,		FlxKey.ESCAPE], 13],
+		'PAUSE' => 	[[P,				FlxKey.ENTER,		FlxKey.BACK], 13],
 		'RESET' => 	[[R, 				FlxKey.NONE],	 					14],
 	];
 	

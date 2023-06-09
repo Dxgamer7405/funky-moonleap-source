@@ -1481,7 +1481,7 @@ class PlayState extends MusicBeatState
 
 	public function pauseGame()
 	{
-		// pause discord rpc
+
 		updateRPC(true);
 
 		// pause game
@@ -1505,7 +1505,7 @@ class PlayState extends MusicBeatState
 		});
 
 		// open pause substate
-		openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		#if mobile removeVirtualPad(); #end openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 	}
 
 	override public function onFocus():Void
