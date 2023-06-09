@@ -104,7 +104,8 @@ class MainMenuGroup extends MusicBeatGroup
 					selecionarcoisa();
 				}
 			});
-
+		}
+	}
 
     public static function selecionarcoisa() {
 				selectedSomething = true;
@@ -153,7 +154,6 @@ class MainMenuGroup extends MusicBeatGroup
 				alive = false;
 			}
    }
-}
 
     //thanks silver
     public static function apertasimples(coisa:Dynamic):Bool
