@@ -153,6 +153,7 @@ class MainMenuGroup extends MusicBeatGroup
 				alive = false;
 			}
    }
+}
 
     //thanks silver
     public static function apertasimples(coisa:Dynamic):Bool
