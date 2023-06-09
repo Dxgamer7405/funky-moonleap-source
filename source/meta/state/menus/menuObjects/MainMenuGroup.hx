@@ -122,36 +122,29 @@ class MainMenuGroup extends MusicBeatGroup
                 PlayState.storyWeek = 0;
                 PlayState.campaignScore = 0;
                 Main.switchState(new PlayState());
-                break;
                 
             case "freeplay":
             case "play":
                 GlobalMenuState.nextMenu = new FreeplayGroup();
                 //Main.switchState(new meta.state.menus.FreeplayState());
-                break;
                 
             case "credits":
                 GlobalMenuState.nextMenu = new CreditsGroup();
-                break;
                 
             case "options":
                 GlobalMenuState.nextMenu = new OptionsGroup();
-                break;
                 
             case "exit":
                 Sys.exit(0);
-                break;
                 
             case "debug menu":
                 GlobalMenuState.nextMenu = new DebugMenuGroup();
-                break;
                 
             case "ost":
             case "buy moonleap":
                 var link:String = (optionShit[curSelected] == "ost") ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";
                 FlxG.state.openSubState(new WebsiteSubState(link));
                 //selectedSomething = false;
-                break;
                 
             //default: selectedSomething = false; // do nothing
         }
