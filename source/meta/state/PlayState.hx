@@ -1487,8 +1487,6 @@ class PlayState extends MusicBeatState
 	public function pauseGame()
 	{
 
-		updateRPC(true);
-
 		// pause game
 		paused = true;
 
