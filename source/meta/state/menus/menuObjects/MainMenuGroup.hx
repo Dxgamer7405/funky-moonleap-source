@@ -107,7 +107,7 @@ class MainMenuGroup extends MusicBeatGroup
 		}
 	}
 
-    public static function selecionarcoisa() {
+    public function selecionarcoisa() {
 				selectedSomething = true;
 				GlobalMenuState.nextMenu = new MainMenuGroup();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
