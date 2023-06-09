@@ -88,13 +88,10 @@ class GlobalMenuState extends MusicBeatState
 		// i hate this so much but theres nothing i can do about it
 		switch(spawnMenu)
 		{
-		  #if mobile 
-		  removeVirtualPad();
 			case 'title': 	nextMenu = new TitleGroup();
 			case 'options': nextMenu = new OptionsGroup();
 			case 'freeplay':nextMenu = new FreeplayGroup();
 			default: 		nextMenu = new MainMenuGroup();
-			#end
 		}
 		
 		curMenu = nextMenu;
