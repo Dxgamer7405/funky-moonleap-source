@@ -37,7 +37,6 @@ class OptionsGroup extends MusicBeatGroup
 			'main' => [
 				'preferences',
 				'appearence',
-				'controls',
 				'android controls',
 				'accessibility',
 				'adjust offset',
@@ -135,13 +134,6 @@ class OptionsGroup extends MusicBeatGroup
 				var choice:String = optionShit[curCategory][curSelected];
 				switch(choice)
 				{
-					case 'controls':
-						if(SaveData.trueSettings.get('Controller Mode'))
-							GlobalMenuState.nextMenu = new GamepadGroup();
-						else
-							 GlobalMenuState.nextMenu = new ControlsGroup();
-						alive = false;
-						
 					case 'android controls':
 						FlxG.sound.music.stop();
 						FlxG.state.openSubState(new mobile.MobileControlsSubState());
