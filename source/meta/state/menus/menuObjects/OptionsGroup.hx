@@ -137,7 +137,6 @@ class OptionsGroup extends MusicBeatGroup
 				{
 					case 'controls':
 						if(SaveData.trueSettings.get('Controller Mode'))
-						#if mobile removeVirtualPad();
 							GlobalMenuState.nextMenu = new GamepadGroup();
 						else
 							 GlobalMenuState.nextMenu = new ControlsGroup();
