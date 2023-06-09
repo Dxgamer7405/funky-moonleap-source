@@ -155,6 +155,7 @@ class MainMenuGroup extends MusicBeatGroup
         }
 		}
 	}
+}
 
 
     //thanks silver
