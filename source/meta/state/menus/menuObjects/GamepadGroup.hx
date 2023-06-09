@@ -32,6 +32,10 @@ class GamepadGroup extends MusicBeatGroup
 		guide.updateHitbox();
 		guide.screenCenter(X);
 		add(guide);
+
+		#if mobile
+		addVirtualPad(NONE, B);
+		#end
 	}
 	
 	var selectedSomething:Bool = false;
