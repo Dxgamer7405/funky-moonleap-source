@@ -1,5 +1,6 @@
 package meta.state.menus.menuObjects;
 
+import flixel.util.FlxTimer;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -17,6 +18,8 @@ class MainMenuGroup extends MusicBeatGroup
 	static var curSelected:Int = 0;
 	
 	var menuItems:FlxTypedGroup<FlxText>;
+
+	var inputAllowed:Bool = true;
 	
 	public function new()
 	{
@@ -27,6 +30,8 @@ class MainMenuGroup extends MusicBeatGroup
 		Discord.changePresence('MAIN MENU', 'Main Menu');
 		#end
 		
+		inputAllowed = false; // só pra garantir.
+
 		//if(Init.debugMode)
 		//	optionShit.insert(optionShit.length - 1, 'debug menu');
 		if(GlobalMenuState.realClock != null)
@@ -49,16 +54,17 @@ class MainMenuGroup extends MusicBeatGroup
 			//menuItem.alpha = 0;
 			//flixel.tweens.FlxTween.tween(menuItem, {alpha: 1}, 0.5, {ease: flixel.tweens.FlxEase.expoOut});
 		}
-		
+		/*
 		#if mobile
 		addVirtualPad(LEFT_FULL, A_B);
 		addVirtualPadCamera();
 		#end
+		*/
 		
 		changeSelection();
 	}
 	
-	var selectedSomething:Bool = false;
+	var selectedSomething:Bool = true;
 	
 	override function update(elapsed:Float)
 	{
@@ -97,13 +103,18 @@ class MainMenuGroup extends MusicBeatGroup
 				}
 			}
 
-            menuItems.forEach(function(txt:FlxText){
-				if(apertasimples(txt)){
-					curSelected=txt.ID;
-					changeSelection(txt.ID);
-					selecionarcoisa();
-				}
-			});
+			if(inputAllowed){
+				menuItems.forEach(function(txt:FlxText){
+					if(apertasimples(txt)){
+						changeSelection(0, txt.ID);
+						new FlxTimer().start(0.3, function(timer:FlxTimer)
+							{
+								selecionarcoisa();
+							});
+						
+					}
+				});
+			}
 		}
 	}
 
@@ -111,6 +122,7 @@ class MainMenuGroup extends MusicBeatGroup
 				selectedSomething = true;
 				GlobalMenuState.nextMenu = new MainMenuGroup();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
+				inputAllowed = false;
 				
                 if(!selectedSomething) {
 				switch(optionShit[curSelected])
@@ -156,6 +168,7 @@ class MainMenuGroup extends MusicBeatGroup
    }
 
     //thanks silver
+	//De nada amigo você é um amigo, embora eu nem sei o que eu fiz aqui kek
     public static function apertasimples(coisa:Dynamic):Bool
         {
             #if desktop
@@ -170,11 +183,15 @@ class MainMenuGroup extends MusicBeatGroup
             return false;
         }
 	
-	public function changeSelection(direction:Int = 0)
+	public function changeSelection(direction:Int = 0, ?directly:Int = -1)
 	{
 		if(direction != 0) FlxG.sound.play(Paths.sound('scrollMenu'));
 		
-		curSelected += direction;
+		if (directly != -1)
+			curSelected += direction;
+		else
+			curSelected = directly;
+
 		curSelected = FlxMath.wrap(curSelected, 0, optionShit.length - 1);
 		
 		for(item in menuItems)
