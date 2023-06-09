@@ -45,7 +45,7 @@ class GamepadGroup extends MusicBeatGroup
 		super.update(elapsed);
 		if(!selectedSomething)
 		{
-			if(virtualPad.buttonB.justPressed | FlxG.android.justReleased.BACK)
+			if(virtualPad.buttonB.justPressed || FlxG.android.justReleased.BACK)
 			{
 				selectedSomething = true;
 				FlxG.sound.play(Paths.sound('scrollMenu'));
