@@ -19,7 +19,7 @@ class MainMenuGroup extends MusicBeatGroup
 	
 	var menuItems:FlxTypedGroup<FlxText>;
 
-	var inputAllowed:Bool = true;
+	var inputAllowed:Bool = false;
 	
 	public function new()
 	{
