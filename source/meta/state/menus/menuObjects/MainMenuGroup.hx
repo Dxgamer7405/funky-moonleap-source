@@ -10,6 +10,7 @@ import meta.subState.WebsiteSubState;
 import meta.data.dependency.Discord;
 import meta.data.*;
 
+// eu acho q esse cabô
 class MainMenuGroup extends MusicBeatGroup
 {
 	var optionShit:Array<String> = ["play", "credits", "buy moonleap", "options", "exit"];
@@ -96,12 +97,21 @@ class MainMenuGroup extends MusicBeatGroup
 				}
 			}
 
+            menuItems.forEach(function(txt:FlxText){
+				if(apertasimples(txt)){
+					curSelected=txt.ID;
+					changeSelection(txt.ID);
+					selecionarcoisa();
+				}
+			});
 
-        if (controls.ACCEPT)
+
+        function selecionarcoisa() {
 				selectedSomething = true;
 				GlobalMenuState.nextMenu = new MainMenuGroup();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				
+                if(!selectedSomething) {
 				switch(optionShit[curSelected])
 				{
 					case 'story':
@@ -118,17 +128,22 @@ class MainMenuGroup extends MusicBeatGroup
 						PlayState.campaignScore = 0;
 						Main.switchState(new PlayState());
 						
-					case 'freeplay' | 'play': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new FreeplayGroup();
+					case 'freeplay' | 'play': 
+                        GlobalMenuState.nextMenu = new FreeplayGroup();
 						//Main.switchState(new meta.state.menus.FreeplayState());
-					case 'credits': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new CreditsGroup();
-					case 'options': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new OptionsGroup();
-					case 'exit': Sys.exit(0);
+
+					case 'credits':
+                        GlobalMenuState.nextMenu = new CreditsGroup();
+					case 'options': 
+                        GlobalMenuState.nextMenu = new OptionsGroup();
+					case 'exit': 
+                        Sys.exit(0);
 					
-					case 'debug menu': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new DebugMenuGroup();
+					case 'debug menu': 
+                        GlobalMenuState.nextMenu = new DebugMenuGroup();
 					
 					case 'ost' | 'buy moonleap':
 						var link:String = (optionShit[curSelected] == 'ost') ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";
-						#if mobile removeVirtualPad(); #end
 						FlxG.state.openSubState(new WebsiteSubState(link));
 						//selectedSomething = false;
 						
@@ -137,8 +152,25 @@ class MainMenuGroup extends MusicBeatGroup
 				
 				alive = false;
 			}
+        }
 		}
 	}
+
+
+    //thanks silver
+    public static function apertasimples(coisa:Dynamic):Bool
+        {
+            #if desktop
+            if (FlxG.mouse.overlaps(coisa) && FlxG.mouse.justPressed)
+                return true;
+            #elseif mobile
+            for (touch in FlxG.touches.list)
+                if (touch.overlaps(coisa) && touch.justPressed)
+                    return true;
+            #end
+    
+            return false;
+        }
 	
 	public function changeSelection(direction:Int = 0)
 	{
@@ -153,5 +185,5 @@ class MainMenuGroup extends MusicBeatGroup
 			if (item.ID == curSelected)
 				item.color = FlxColor.fromRGB(170,255,255);
 		}
-	}
+	} 
 }
