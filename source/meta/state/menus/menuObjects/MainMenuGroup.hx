@@ -101,7 +101,7 @@ class MainMenuGroup extends MusicBeatGroup
 				if(apertasimples(txt)){
 					curSelected=txt.ID;
 					changeSelection(txt.ID);
-					selecionarCoisa();
+					selecionarcoisa();
 				}
 			});
 
