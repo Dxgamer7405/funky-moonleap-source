@@ -99,7 +99,7 @@ class MainMenuGroup extends MusicBeatGroup
 			if(controls.ACCEPT)
 			{
 				selectedSomething = true;
-				GlobalMenuState.nextMenu = new MainMenuGroup();
+				#if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new MainMenuGroup();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				
 				switch(optionShit[curSelected])
@@ -128,7 +128,7 @@ class MainMenuGroup extends MusicBeatGroup
 					
 					case 'ost' | 'buy moonleap':
 						var link:String = (optionShit[curSelected] == 'ost') ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";
-						
+						#if mobile removeVirtualPad(); #end
 						FlxG.state.openSubState(new WebsiteSubState(link));
 						//selectedSomething = false;
 						

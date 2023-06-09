@@ -85,7 +85,7 @@ class SaveData
 			'Whether to have the strumline vertically flipped in gameplay.',
 		],
 		'Controller Mode' => [
-			false,
+			true,
 			Checkmark,
 			'Whether to use a controller instead of the keyboard to play. (Disables keyboard controls menu, be careful!!)',
 		],

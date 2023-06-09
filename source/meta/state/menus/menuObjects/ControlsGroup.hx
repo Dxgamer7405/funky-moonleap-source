@@ -110,6 +110,10 @@ class ControlsGroup extends MusicBeatGroup
 		keyString = keyString.replace(" ", "");
 
 		return formatKey(keyString);
+		
+		#if mobile
+		addVirtualPad(LEFT_RIGHT, A_B);
+		#end
 	}
 	
 	var curTxt:String = '';
@@ -125,7 +129,7 @@ class ControlsGroup extends MusicBeatGroup
 		
 		if(!submenuOpen)
 		{
-			if(FlxG.keys.justPressed.ESCAPE)
+			if(FlxG.keys.justPressed.ESCAPE #if mobile || FlxG.android.justReleased.BACK #end)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				GlobalMenuState.nextMenu = new OptionsGroup();
@@ -204,10 +208,6 @@ class ControlsGroup extends MusicBeatGroup
 					changeVertical(change, false);
 			}
 		}
-		
-		#if mobile
-		addVirtualPad(LEFT_RIGHT, A_B);
-		#end
 		
 		changeHorizontal();
 	}
