@@ -662,6 +662,11 @@ class PlayState extends MusicBeatState
 		
 		super.update(elapsed);
 		
+		if(FlxG.android.justReleased.BACK)
+		{
+		 pauseGame();
+		}
+		
 		if(controls.ACTION && !startingSong)
 		{
 			switch(SONG.song.toLowerCase())
