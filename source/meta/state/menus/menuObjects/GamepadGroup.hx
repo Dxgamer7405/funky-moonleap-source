@@ -50,7 +50,7 @@ class GamepadGroup extends MusicBeatGroup
 				selectedSomething = true;
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				GlobalMenuState.nextMenu = new OptionsGroup();
-				alive = false;
+				//alive = false;
 			}
 		}
 	}
