@@ -16,8 +16,6 @@ class MainMenuGroup extends MusicBeatGroup
 	static var curSelected:Int = 0;
 	
 	var menuItems:FlxTypedGroup<FlxText>;
-	var lastButtonPressTime: Float = 0;
-  var debounceDelay: Float = 0.9; // Chat GPT LOL
 	
 	public function new()
 	{
@@ -99,8 +97,7 @@ class MainMenuGroup extends MusicBeatGroup
 			}
 
 
-        if (controls.ACCEPT && canTriggerButton()) {
-        lastButtonPressTime = FlxG.elapsed;
+        if (controls.ACCEPT)
 				selectedSomething = true;
 				GlobalMenuState.nextMenu = new MainMenuGroup();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
@@ -142,11 +139,6 @@ class MainMenuGroup extends MusicBeatGroup
 			}
 		}
 	}
-	
-  function canTriggerButton(): Bool {
-     return (FlxG.elapsed - lastButtonPressTime) >= debounceDelay;
-    }
- }
 	
 	public function changeSelection(direction:Int = 0)
 	{
