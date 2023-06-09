@@ -99,7 +99,7 @@ class MainMenuGroup extends MusicBeatGroup
 			if(controls.ACCEPT)
 			{
 				selectedSomething = true;
-				#if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new MainMenuGroup();
+			  #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new MainMenuGroup();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 				
 				switch(optionShit[curSelected])
