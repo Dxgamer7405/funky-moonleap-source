@@ -97,7 +97,7 @@ class MainMenuGroup extends MusicBeatGroup
 				}
 			}
 
-            menuItem.forEach(function(txt:FlxText){
+            menuItems.forEach(function(txt:FlxText){
 				if(apertasimples(txt)){
 					curSelected=txt.ID;
 					changeSelection(txt.ID);
