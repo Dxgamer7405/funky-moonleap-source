@@ -122,7 +122,7 @@ class MainMenuGroup extends MusicBeatGroup
 				selectedSomething = true;
 				GlobalMenuState.nextMenu = new MainMenuGroup();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
-				inputAllowed = false;
+				inputAllowed = true;
 				
                 if(!selectedSomething) {
 				switch(optionShit[curSelected])
