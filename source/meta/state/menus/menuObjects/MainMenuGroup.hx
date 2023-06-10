@@ -19,7 +19,7 @@ class MainMenuGroup extends MusicBeatGroup
 	
 	var menuItems:FlxTypedGroup<FlxText>;
 
-	var inputAllowed:Bool = false;
+	var inputAllowed:Bool = true;
 	
 	public function new()
 	{
@@ -30,7 +30,7 @@ class MainMenuGroup extends MusicBeatGroup
 		Discord.changePresence('MAIN MENU', 'Main Menu');
 		#end
 		
-		inputAllowed = false; // só pra garantir.
+		inputAllowed = true; // só pra garantir.
 
 		//if(Init.debugMode)
 		//	optionShit.insert(optionShit.length - 1, 'debug menu');
