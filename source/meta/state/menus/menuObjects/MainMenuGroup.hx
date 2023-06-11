@@ -14,6 +14,8 @@ class MainMenuGroup extends MusicBeatGroup
 {
 	var optionShit:Array<String> = ["play", "credits", "buy moonleap", "options"];
 	static var curSelected:Int = 0;
+
+	public var isTransitioning:Bool = false;
 	
 	var menuItems:FlxTypedGroup<FlxText>;
 	
@@ -48,11 +50,6 @@ class MainMenuGroup extends MusicBeatGroup
 			//menuItem.alpha = 0;
 			//flixel.tweens.FlxTween.tween(menuItem, {alpha: 1}, 0.5, {ease: flixel.tweens.FlxEase.expoOut});
 		}
-		
-		#if mobile
-		addVirtualPad(LEFT_FULL, A);
-		addVirtualPadCamera();
-		#end
 		
 		changeSelection();
 	}
@@ -99,9 +96,9 @@ class MainMenuGroup extends MusicBeatGroup
 	if(controls.ACCEPT)
 		{
 			selectedSomething = true;
+			isTransitioning = true;
 			GlobalMenuState.nextMenu = new MainMenuGroup();
 			FlxG.sound.play(Paths.sound('confirmMenu'));
-			FlxG.resetState();
 
 	switch(optionShit[curSelected])
 	{
@@ -116,21 +113,17 @@ class MainMenuGroup extends MusicBeatGroup
 			PlayState.campaignScore = 0;
 			Main.switchState(new PlayState());
 		case 'freeplay', 'play':
-			#if mobile removeVirtualPad(); #end
 			GlobalMenuState.nextMenu = new FreeplayGroup();
 			//Main.switchState(new meta.state.menus.FreeplayState());
 		case 'credits':
-			#if mobile removeVirtualPad(); #end
 			GlobalMenuState.nextMenu = new CreditsGroup();
 		case 'options':
 			#if mobile removeVirtualPad(); #end
 			GlobalMenuState.nextMenu = new OptionsGroup();
 		case 'debug menu':
-			#if mobile removeVirtualPad(); #end
 			GlobalMenuState.nextMenu = new DebugMenuGroup();
 		case 'ost', 'buy moonleap':
 			var link:String = (optionShit[curSelected] == 'ost') ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";
-			#if mobile removeVirtualPad(); #end
 			FlxG.state.openSubState(new WebsiteSubState(link));
 						//selectedSomething = false;
 						
@@ -138,6 +131,7 @@ class MainMenuGroup extends MusicBeatGroup
 				}
 				
 				alive = false;
+				isTransitioning = false;
 			}
 		}
 	}

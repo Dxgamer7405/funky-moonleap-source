@@ -40,11 +40,6 @@ class DebugMenuGroup extends MusicBeatGroup
 			//flixel.tweens.FlxTween.tween(menuItem, {alpha: 1}, 0.5, {ease: flixel.tweens.FlxEase.expoOut});
 		}
 		
-		#if mobile
-		addVirtualPad(LEFT_FULL, A_B);
-		addVirtualPadCamera();
-		#end
-		
 		changeSelection();
 	}
 	

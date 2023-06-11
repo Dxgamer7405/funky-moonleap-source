@@ -135,10 +135,6 @@ class FreeplayGroup extends MusicBeatGroup
 		changeSelected(false);
 		changeRow(false);
 		placeBox(true);
-
-		#if mobile
-		addVirtualPad(LEFT_FULL, A_B);
-		#end
 	}
 	
 	var placeX:Float = 0;

@@ -89,7 +89,7 @@ class OptionsGroup extends MusicBeatGroup
 		
 		description = new FlxText(0,0,Math.floor(FlxG.width - 640),"");
 		description.setFormat(Main.gFont, 18, FlxColor.fromRGB(173,253,255), CENTER);
-		add(description);	
+		add(description);	 
 		
 		// actually reloading it
 		changeCategory('main');

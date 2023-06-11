@@ -198,10 +198,6 @@ class CreditsGroup extends MusicBeatGroup
 			}
 		}
 		
-		#if mobile
-		addVirtualPad(UP_DOWN, A_B);
-		#end
-		
 		changeSelection();
 	}
 	

@@ -97,6 +97,11 @@ class GlobalMenuState extends MusicBeatState
 		curMenu = nextMenu;
 		
 		add(curMenu);
+
+		#if mobile
+		addVirtualPad(LEFT_FULL, A_B);
+		addVirtualPadCamera();
+		#end
 	}
 	
 	override function update(elapsed:Float)
