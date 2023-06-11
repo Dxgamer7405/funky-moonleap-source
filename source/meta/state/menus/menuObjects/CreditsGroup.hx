@@ -30,6 +30,7 @@ class CreditsGroup extends MusicBeatGroup
 	
 	var funkyCredits:Array<Dynamic> = [];
 	var leapyCredits:Array<Dynamic> = [];
+	var androidCredits:Array<Dynamic> = [];
 	
 	public function new()
 	{
@@ -53,6 +54,13 @@ class CreditsGroup extends MusicBeatGroup
 		];
 		// just like the original!!
 		leapyCredits =
+		[
+			['original game by', 'guselect', 	 ["https://youtube.com/@BotaoSelect", "https://twitter.com/guselect"]],
+			['music by', 		 'dani serranú', ["https://youtube.com/@Danirrano", "https://twitter.com/daniserranu", "https://soundcloud.com/danielle-serranu"]],
+			['monster design by','garope', 		 ["https://twitter.com/Garope_", "https://instagram.com/garope_art/"]],
+		];
+		// just like the original!!
+		androidCredits =
 		[
 			['original game by', 'guselect', 	 ["https://youtube.com/@BotaoSelect", "https://twitter.com/guselect"]],
 			['music by', 		 'dani serranú', ["https://youtube.com/@Danirrano", "https://twitter.com/daniserranu", "https://soundcloud.com/danielle-serranu"]],

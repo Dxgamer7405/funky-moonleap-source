@@ -667,7 +667,7 @@ class PlayState extends MusicBeatState
 		 pauseGame();
 		}
 		
-		if(controls.ACTION && !startingSong)
+		if(controls.ACCEPT && !startingSong)
 		{
 			switch(SONG.song.toLowerCase())
 			{
@@ -947,6 +947,7 @@ class PlayState extends MusicBeatState
 				canPause = false;
 				paused = true;
 				resetMusic();
+				removeVirtualPad();
 				//Conductor.songPosition = 0;
 				boyfriend.playAnim('death');
 				FlxG.sound.play(Paths.sound('death/luano'));
@@ -964,6 +965,7 @@ class PlayState extends MusicBeatState
 				persistentDraw = false;
 				
 				resetMusic();
+				removeVirtualPad();
 
 				// dumb fix but it works ig
 				for(i in  ["", "End"])
@@ -1756,6 +1758,8 @@ class PlayState extends MusicBeatState
 	function startSong():Void
 	{
 		startingSong = false;
+		addVirtualPad(NONE, A);
+		addVirtualPadCamera();
 
 		previousFrameTime = FlxG.game.ticks;
 		lastReportedPlayheadPosition = 0;

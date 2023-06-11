@@ -4,3 +4,4 @@ APIStuff.hx
 mods/
 docs/legacy-docs/_build
 exclude/
+build.lnk
