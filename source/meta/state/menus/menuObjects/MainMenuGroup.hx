@@ -99,8 +99,7 @@ class MainMenuGroup extends MusicBeatGroup
 if (controls.ACCEPT)
 {
 	selectedSomething = true;
-	GlobalMenuState.removeVirtualPad();
-	nextMenu = new MainMenuGroup();
+	GlobalMenuState.removeVirtualPad(); || nextMenu = new MainMenuGroup();
 
 	FlxG.sound.play(Paths.sound('confirmMenu'));
 
@@ -140,7 +139,9 @@ if (controls.ACCEPT)
 			FlxG.state.openSubState(new WebsiteSubState(link));
 			//selectedSomething = false;
 			
-		//default: selectedSomething = false; // do nothing
+default: 
+		//selectedSomething = false; // do nothing
+		
 	}
 	
 	alive = false;
