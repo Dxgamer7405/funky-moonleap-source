@@ -85,7 +85,7 @@ class MainMenuGroup extends MusicBeatGroup
 			}
 			if(SaveData.trueSettings.get('Finished'))
 			{
-				if(FlxG.keys.justPressed.NUMPADMULTIPLY)
+				if(virtualPad.buttonC.justPressed)
 				{
 					selectedSomething = true;
 					WarningState.curWarning = ENDING;

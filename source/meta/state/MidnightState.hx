@@ -40,10 +40,6 @@ class MidnightState extends MusicBeatState
 		clock.alpha = 0;
 		add(clock);
 		
-		#if mobile
-    addVirtualPad(NONE, A_B);
-    #end
-		
 		readLine();
 	}
 	

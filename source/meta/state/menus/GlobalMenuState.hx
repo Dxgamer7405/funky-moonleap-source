@@ -99,7 +99,7 @@ class GlobalMenuState extends MusicBeatState
 		add(curMenu);
 
 		#if mobile
-		addVirtualPad(LEFT_FULL, A_B);
+		addVirtualPad(LEFT_FULL, A_B_C);
 		addVirtualPadCamera();
 		#end
 	}
