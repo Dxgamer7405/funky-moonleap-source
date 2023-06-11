@@ -594,7 +594,7 @@ class ChartingState extends MusicBeatState
 		return daPos;
 
 		#if mobile
-		addVirtualPad(LEFT_FULL, A,B);
+		addVirtualPad(LEFT_FULL, A_B);
     #end
 	}
 	
