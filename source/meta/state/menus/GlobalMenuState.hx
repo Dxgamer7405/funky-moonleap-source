@@ -91,7 +91,7 @@ class GlobalMenuState extends MusicBeatState
 			case 'title': 	nextMenu = new TitleGroup();
 			case 'options': nextMenu = new OptionsGroup();
 			case 'freeplay':nextMenu = new FreeplayGroup();
-			default: 		nextMenu = new MainMenuGroup();
+			default: 		nextMenu = #if mobile addVirtualPad  (LEFT_FULL, A_B); #end new MainMenuGroup();
 		}
 		
 		curMenu = nextMenu;

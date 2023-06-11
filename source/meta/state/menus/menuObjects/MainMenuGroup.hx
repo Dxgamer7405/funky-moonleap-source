@@ -1,6 +1,5 @@
 package meta.state.menus.menuObjects;
 
-import flixel.util.FlxTimer;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -11,27 +10,22 @@ import meta.subState.WebsiteSubState;
 import meta.data.dependency.Discord;
 import meta.data.*;
 
-// eu acho q esse cabô
 class MainMenuGroup extends MusicBeatGroup
 {
-	var optionShit:Array<String> = ["play", "credits", "buy moonleap", "options", "exit"];
+	var optionShit:Array<String> = ["play", "credits", "buy moonleap", "options"];
 	static var curSelected:Int = 0;
 	
 	var menuItems:FlxTypedGroup<FlxText>;
-
-	var inputAllowed:Bool = true;
 	
 	public function new()
 	{
 		super();
 		groupName = GlobalMenuState.spawnMenu = 'main-menu';
 		
-		#if desktop
+		#if !html5
 		Discord.changePresence('MAIN MENU', 'Main Menu');
 		#end
 		
-		inputAllowed = true; // só pra garantir.
-
 		//if(Init.debugMode)
 		//	optionShit.insert(optionShit.length - 1, 'debug menu');
 		if(GlobalMenuState.realClock != null)
@@ -54,17 +48,15 @@ class MainMenuGroup extends MusicBeatGroup
 			//menuItem.alpha = 0;
 			//flixel.tweens.FlxTween.tween(menuItem, {alpha: 1}, 0.5, {ease: flixel.tweens.FlxEase.expoOut});
 		}
-		/*
+		
 		#if mobile
-		addVirtualPad(LEFT_FULL, A_B);
-		addVirtualPadCamera();
+		addVirtualPad(LEFT_FULL, A);
 		#end
-		*/
 		
 		changeSelection();
 	}
 	
-	var selectedSomething:Bool = true;
+	var selectedSomething:Bool = false;
 	
 	override function update(elapsed:Float)
 	{
@@ -103,28 +95,15 @@ class MainMenuGroup extends MusicBeatGroup
 				}
 			}
 
-			if(inputAllowed){
-				menuItems.forEach(function(txt:FlxText){
-					if(apertasimples(txt)){
-						changeSelection(0, txt.ID);
-						new FlxTimer().start(0.3, function(timer:FlxTimer)
-							{
-								selecionarcoisa();
-							});
-						
-					}
-				});
-			}
-		}
-	}
-
-    public function selecionarcoisa() {
+			if(controls.ACCEPT)
+			#if mobile
+			removeVirtualPad
+			#end
+			{
 				selectedSomething = true;
 				GlobalMenuState.nextMenu = new MainMenuGroup();
 				FlxG.sound.play(Paths.sound('confirmMenu'));
-				inputAllowed = true;
 				
-                if(!selectedSomething) {
 				switch(optionShit[curSelected])
 				{
 					case 'story':
@@ -140,21 +119,15 @@ class MainMenuGroup extends MusicBeatGroup
 						PlayState.storyWeek = 0;
 						PlayState.campaignScore = 0;
 						Main.switchState(new PlayState());
-						
 					case 'freeplay' | 'play': 
-                        GlobalMenuState.nextMenu = new FreeplayGroup();
+               GlobalMenuState.nextMenu = new FreeplayGroup();
 						//Main.switchState(new meta.state.menus.FreeplayState());
-
 					case 'credits':
-                        GlobalMenuState.nextMenu = new CreditsGroup();
+               GlobalMenuState.nextMenu = new CreditsGroup();
 					case 'options': 
-                        GlobalMenuState.nextMenu = new OptionsGroup();
-					case 'exit': 
-                        Sys.exit(0);
-					
+              GlobalMenuState.nextMenu = new OptionsGroup();
 					case 'debug menu': 
-                        GlobalMenuState.nextMenu = new DebugMenuGroup();
-					
+             GlobalMenuState.nextMenu = new DebugMenuGroup();
 					case 'ost' | 'buy moonleap':
 						var link:String = (optionShit[curSelected] == 'ost') ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";
 						FlxG.state.openSubState(new WebsiteSubState(link));
@@ -165,33 +138,14 @@ class MainMenuGroup extends MusicBeatGroup
 				
 				alive = false;
 			}
-   }
-
-    //thanks silver
-	//De nada amigo você é um amigo, embora eu nem sei o que eu fiz aqui kek
-    public static function apertasimples(coisa:Dynamic):Bool
-        {
-            #if desktop
-            if (FlxG.mouse.overlaps(coisa) && FlxG.mouse.justPressed)
-                return true;
-            #elseif mobile
-            for (touch in FlxG.touches.list)
-                if (touch.overlaps(coisa) && touch.justPressed)
-                    return true;
-            #end
-    
-            return false;
-        }
+		}
+	}
 	
-	public function changeSelection(direction:Int = 0, ?directly:Int = -1)
+	public function changeSelection(direction:Int = 0)
 	{
 		if(direction != 0) FlxG.sound.play(Paths.sound('scrollMenu'));
 		
-		if (directly != -1)
-			curSelected += direction;
-		else
-			curSelected = directly;
-
+		curSelected += direction;
 		curSelected = FlxMath.wrap(curSelected, 0, optionShit.length - 1);
 		
 		for(item in menuItems)
@@ -200,5 +154,5 @@ class MainMenuGroup extends MusicBeatGroup
 			if (item.ID == curSelected)
 				item.color = FlxColor.fromRGB(170,255,255);
 		}
-	} 
+	}
 }
