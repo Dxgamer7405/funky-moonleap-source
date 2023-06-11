@@ -146,7 +146,7 @@ class PauseSubState extends MusicBeatSubState
 					Main.switchState(new PlayState());
 					
 				case "charting menu":
-					FlxG.state.openSubState(new ChartingState());
+					Main.switchState(new ChartingState());
 					
 				case "options":
 					close();
