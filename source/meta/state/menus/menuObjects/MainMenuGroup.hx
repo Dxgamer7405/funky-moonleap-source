@@ -96,50 +96,56 @@ class MainMenuGroup extends MusicBeatGroup
 				}
 			}
 
-			if(controls.ACCEPT)
-			{
-				selectedSomething = true;
-       GlobalMenuState.removeVirtualPad(); || nextMenu = new MainMenuGroup();
+if (controls.ACCEPT)
+{
+	selectedSomething = true;
+	GlobalMenuState.removeVirtualPad();
+	nextMenu = new MainMenuGroup();
 
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-				
-				switch(optionShit[curSelected])
-				{
-					case 'story':
-						//FlxG.sound.play(Paths.sound('confirmMenu'));
-						FlxG.sound.music.stop();
-						
-						PlayState.storyPlaylist = ['leap', 'crescent', 'odyssey'];
-						PlayState.isStoryMode = true;
-						
-						PlayState.storyDifficulty = 0;
-						
-						PlayState.SONG = Song.loadFromJson('leap', 'leap');
-						PlayState.storyWeek = 0;
-						PlayState.campaignScore = 0;
-						Main.switchState(new PlayState());
-						
-					case 'freeplay' | 'play': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new FreeplayGroup();
-						//Main.switchState(new meta.state.menus.FreeplayState());
-					case 'credits': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new CreditsGroup();
-					case 'options': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new OptionsGroup();
-					case 'exit': Sys.exit(0);
-					
-					case 'debug menu': #if mobile removeVirtualPad(); #end GlobalMenuState.nextMenu = new DebugMenuGroup();
-					
-					case 'ost' | 'buy moonleap':
-						var link:String = (optionShit[curSelected] == 'ost') ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";
-						#if mobile removeVirtualPad(); #end
-						FlxG.state.openSubState(new WebsiteSubState(link));
-						//selectedSomething = false;
-						
-					//default: selectedSomething = false; // do nothing
-				}
-				
-				alive = false;
-			}
-		}
+	FlxG.sound.play(Paths.sound('confirmMenu'));
+
+	switch(optionShit[curSelected])
+	{
+		case 'story':
+			//FlxG.sound.play(Paths.sound('confirmMenu'));
+			FlxG.sound.music.stop();
+			
+			PlayState.storyPlaylist = ['leap', 'crescent', 'odyssey'];
+			PlayState.isStoryMode = true;
+			
+			PlayState.storyDifficulty = 0;
+			
+			PlayState.SONG = Song.loadFromJson('leap', 'leap');
+			PlayState.storyWeek = 0;
+			PlayState.campaignScore = 0;
+			Main.switchState(new PlayState());
+		case 'freeplay', 'play':
+			#if mobile removeVirtualPad(); #end
+			GlobalMenuState.nextMenu = new FreeplayGroup();
+			//Main.switchState(new meta.state.menus.FreeplayState());
+		case 'credits':
+			#if mobile removeVirtualPad(); #end
+			GlobalMenuState.nextMenu = new CreditsGroup();
+		case 'options':
+			#if mobile removeVirtualPad(); #end
+			GlobalMenuState.nextMenu = new OptionsGroup();
+		case 'exit':
+			Sys.exit(0);
+		case 'debug menu':
+			#if mobile removeVirtualPad(); #end
+			GlobalMenuState.nextMenu = new DebugMenuGroup();
+		case 'ost', 'buy moonleap':
+			var link:String = (optionShit[curSelected] == 'ost') ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";
+			#if mobile removeVirtualPad(); #end
+			FlxG.state.openSubState(new WebsiteSubState(link));
+			//selectedSomething = false;
+			
+		//default: selectedSomething = false; // do nothing
 	}
+	
+	alive = false;
+}
+
 	
 	public function changeSelection(direction:Int = 0)
 	{
