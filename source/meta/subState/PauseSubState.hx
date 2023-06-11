@@ -23,7 +23,7 @@ class PauseSubState extends MusicBeatSubState
 	var menuItems:Array<String> = [
 		'resume',
 		'restart',
-		'charting state',
+		'charting editor',
 		//'options', // i give up
 		'autoplay',
 		'practice',
@@ -145,8 +145,8 @@ class PauseSubState extends MusicBeatSubState
 				case "restart":
 					Main.switchState(new PlayState());
 					
-				case "charting menu":
-					Main.switchState(new ChartingState());
+				case "charting editor":
+					MusicBeat.switchState(new meta.state.editors.ChartingState());
 					
 				case "options":
 					close();
