@@ -308,6 +308,15 @@ class SaveData
 			FlxG.sound.muted = FlxG.save.data.mute;
 	}
 	
+	public static function unlockSong(daSong:String = 'leap')
+	{
+		if(trueSettings.get('Locked Songs').contains(daSong))
+			trueSettings.get('Locked Songs').remove(daSong);
+		
+		saveSettings();
+	}
+}
+	
 	public static function unlockAllSongs():Void
 	{
   SaveData.unlockSong('sun-hop');
@@ -316,5 +325,4 @@ class SaveData
   SaveData.unlockSong('midnight-secrets');
   saveSettings();
 	}
-}
 
