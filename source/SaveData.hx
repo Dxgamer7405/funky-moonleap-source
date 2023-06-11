@@ -315,7 +315,6 @@ class SaveData
 		
 		saveSettings();
 	}
-}
 	
 	public static function unlockAllSongs():Void
 	{
@@ -325,4 +324,4 @@ class SaveData
   SaveData.unlockSong('midnight-secrets');
   saveSettings();
 	}
-
+}
