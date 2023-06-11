@@ -53,10 +53,6 @@ class WebsiteSubState extends MusicBeatSubState
 			newItem.ID = i;
 		}
 		
-		#if mobile
-		addVirtualPad(NONE, B);
-		#end
-		
 		changeSelection(false);
 		
 		FlxTween.tween(bg, {alpha: 0.75}, 0.05, {

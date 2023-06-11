@@ -592,6 +592,10 @@ class ChartingState extends MusicBeatState
 			daPos += 4 * (1000 * 60 / daBPM);
 		}
 		return daPos;
+
+		#if mobile
+		addVirtualPad(LEFT_FULL, A,B);
+    #end
 	}
 	
 	var lastSongPos:Null<Float> = null;
