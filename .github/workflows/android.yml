@@ -38,6 +38,12 @@ jobs:
         with:
           haxe-version: 4.2.5
 
+      - name: Cache libs
+        uses: actions/cache@v2
+        with:
+          path: path/to/libs
+          key: ${{ runner.os }}-libs
+
       - name: Restore Previous Cache
         id: cache-debug-build-android-restore
         uses: actions/cache/restore@main
