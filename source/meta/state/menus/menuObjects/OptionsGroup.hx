@@ -130,15 +130,14 @@ class OptionsGroup extends MusicBeatGroup
 				switch(choice)
 				{
 					case 'android controls':
-						FlxG.sound.music.stop();
 						FlxG.state.openSubState(new mobile.MobileControlsSubState());
 						
 					case 'adjust offset':
 						FlxG.sound.music.stop();
-						#if mobile removeVirtualPad(); #end Main.switchState(new AdjustOffsetState());
+						Main.switchState(new AdjustOffsetState());
 						
 					case 'reset save data':
-						#if mobile removeVirtualPad(); #end FlxG.state.openSubState(new meta.subState.DeleteSaveSubstate());
+						FlxG.state.openSubState(new meta.subState.DeleteSaveSubstate());
 						
 					default: // it will crash it optionShit doesnt have a category for it so beware!!
 						changeCategory(choice);

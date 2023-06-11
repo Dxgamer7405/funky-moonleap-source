@@ -119,7 +119,7 @@ class AdjustOffsetState extends MusicBeatState
 		
 		FlxG.camera.zoom = FlxMath.lerp(FlxG.camera.zoom, 1, elapsed * 6);
 		
-		if(controls.BACK)
+		if(controls.BACK #if android || FlxG.android.justReleased.BACK #end) // so pra n dar softlock 
 		{
 			daSong.stop();
 			//Main.switchState(new OptionsMenuState());
