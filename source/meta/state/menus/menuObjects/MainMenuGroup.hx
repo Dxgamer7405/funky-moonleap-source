@@ -46,6 +46,7 @@ class MainMenuGroup extends MusicBeatGroup
 			menuItem.scrollFactor.set();
 			menuItem.setFormat(Main.gFont, 36, FlxColor.WHITE, CENTER);
 			menuItem.ID = i;
+			menuItem.updateHitbox();
 			menuItems.add(menuItem);
 			
 			// arrumando os lugar
