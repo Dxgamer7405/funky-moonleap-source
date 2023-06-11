@@ -1,11 +1,15 @@
 package meta.subState;
 
+import meta.data.dependency.FNFUIState;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import meta.data.dependency.FNFUIState;
 import flixel.input.keyboard.FlxKey;
+import meta.subState.*;
+import meta.state.editors.*;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -146,7 +150,7 @@ class PauseSubState extends MusicBeatSubState
 					Main.switchState(new PlayState());
 					
 				case "charting menu":
-					FlxG.state.openSubState(new ChartingState());
+					Main.switchState(new ChartingState());
 					
 				case "options":
 					close();
