@@ -23,6 +23,7 @@ class PauseSubState extends MusicBeatSubState
 	var menuItems:Array<String> = [
 		'resume',
 		'restart',
+		'charting state',
 		//'options', // i give up
 		'autoplay',
 		'practice',
@@ -143,6 +144,9 @@ class PauseSubState extends MusicBeatSubState
 					
 				case "restart":
 					Main.switchState(new PlayState());
+					
+				case "charting menu":
+					FlxG.state.openSubState(new ChartingState());
 					
 				case "options":
 					close();
