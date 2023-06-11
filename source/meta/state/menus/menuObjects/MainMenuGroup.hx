@@ -97,7 +97,7 @@ class MainMenuGroup extends MusicBeatGroup
 
 			if(controls.ACCEPT)
 			#if mobile
-			removeVirtualPad
+			removeVirtualPad();
 			#end
 			{
 				selectedSomething = true;
