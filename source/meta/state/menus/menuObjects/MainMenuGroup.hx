@@ -12,7 +12,7 @@ import meta.data.*;
 
 class MainMenuGroup extends MusicBeatGroup
 {
-	var optionShit:Array<String> = ["play", "credits", "buy moonleap", "options", "exit"];
+	var optionShit:Array<String> = ["play", "credits", "buy moonleap", "options"];
 	static var curSelected:Int = 0;
 	
 	var menuItems:FlxTypedGroup<FlxText>;
@@ -50,7 +50,7 @@ class MainMenuGroup extends MusicBeatGroup
 		}
 		
 		#if mobile
-		addVirtualPad(LEFT_FULL, A_B);
+		addVirtualPad(LEFT_FULL, A);
 		addVirtualPadCamera();
 		#end
 		
@@ -96,24 +96,21 @@ class MainMenuGroup extends MusicBeatGroup
 				}
 			}
 
-if (controls.ACCEPT)
-{
-	selectedSomething = true;
-	GlobalMenuState.removeVirtualPad(); || nextMenu = new MainMenuGroup();
-
-	FlxG.sound.play(Paths.sound('confirmMenu'));
+	if(controls.ACCEPT)
+		{
+			selectedSomething = true;
+			GlobalMenuState.nextMenu = new MainMenuGroup();
+			FlxG.sound.play(Paths.sound('confirmMenu'));
+			FlxG.resetState();
 
 	switch(optionShit[curSelected])
 	{
 		case 'story':
 			//FlxG.sound.play(Paths.sound('confirmMenu'));
 			FlxG.sound.music.stop();
-			
 			PlayState.storyPlaylist = ['leap', 'crescent', 'odyssey'];
 			PlayState.isStoryMode = true;
-			
 			PlayState.storyDifficulty = 0;
-			
 			PlayState.SONG = Song.loadFromJson('leap', 'leap');
 			PlayState.storyWeek = 0;
 			PlayState.campaignScore = 0;
@@ -128,8 +125,6 @@ if (controls.ACCEPT)
 		case 'options':
 			#if mobile removeVirtualPad(); #end
 			GlobalMenuState.nextMenu = new OptionsGroup();
-		case 'exit':
-			Sys.exit(0);
 		case 'debug menu':
 			#if mobile removeVirtualPad(); #end
 			GlobalMenuState.nextMenu = new DebugMenuGroup();
@@ -137,15 +132,15 @@ if (controls.ACCEPT)
 			var link:String = (optionShit[curSelected] == 'ost') ? "https://on.soundcloud.com/ha9oz" : "https://store.steampowered.com/app/2166050/Moonleap/";
 			#if mobile removeVirtualPad(); #end
 			FlxG.state.openSubState(new WebsiteSubState(link));
-			//selectedSomething = false;
-			
-default: 
-		//selectedSomething = false; // do nothing
-		
+						//selectedSomething = false;
+						
+					//default: selectedSomething = false; // do nothing
+				}
+				
+				alive = false;
+			}
+		}
 	}
-	
-	alive = false;
-}
 
 	
 	public function changeSelection(direction:Int = 0)
