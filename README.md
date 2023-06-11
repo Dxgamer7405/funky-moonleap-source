@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://media.discordapp.net/attachments/1014315289153904734/1098632917929959514/image0.gif" width="220"/></a>
-  <h1 align="center">Funky Moonleap</h1>
+  <h1 align="center">Funky Moonleap For Android</h1>
   <h2 align="center">a mod of an indie game about another indie game</h2>
 </p>
 
