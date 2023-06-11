@@ -41,6 +41,7 @@ class OptionsGroup extends MusicBeatGroup
 				'accessibility',
 				'adjust offset',
 				'reset save data',
+				'unlock all songs',
 			],
 
 			// actual options
@@ -138,6 +139,9 @@ class OptionsGroup extends MusicBeatGroup
 						
 					case 'reset save data':
 						FlxG.state.openSubState(new meta.subState.DeleteSaveSubstate());
+						
+						case 'unlock all songs':
+             SaveData.unlockAllSongs();
 						
 					default: // it will crash it optionShit doesnt have a category for it so beware!!
 						changeCategory(choice);

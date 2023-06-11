@@ -308,11 +308,13 @@ class SaveData
 			FlxG.sound.muted = FlxG.save.data.mute;
 	}
 	
-	public static function unlockSong(daSong:String = 'leap')
+	public static function unlockAllSongs():Void
 	{
-		if(trueSettings.get('Locked Songs').contains(daSong))
-			trueSettings.get('Locked Songs').remove(daSong);
-		
-		saveSettings();
+  SaveData.unlockSong('sun-hop');
+  SaveData.unlockSong('devlog'); 
+  SaveData.unlockSong('leap-(d-side-mix)');
+  SaveData.unlockSong('midnight-secrets');
+  saveSettings();
 	}
 }
+
