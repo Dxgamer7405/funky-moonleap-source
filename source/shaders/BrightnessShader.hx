@@ -28,7 +28,7 @@ class BrightnessShaderData extends FlxShader
 	void main()
 	{
 		vec4 color = texture2D(bitmap, openfl_TextureCoordv);
-		if(color.a == 0.)
+		if(color.a == 0)
 		{
 			gl_FragColor = vec4(0., 0., 0., 0.);
 		}
