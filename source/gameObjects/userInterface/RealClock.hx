@@ -21,10 +21,10 @@ class RealClock extends FlxSpriteGroup
 	public function new()
 	{
 		super();
-		clockColor = new FlxSprite().loadGraphic(Paths.image(location + 'clock back'));
+		clockColor = new FlxSprite().loadGraphic(Paths.image(location + 'clock-back'));
 		add(clockColor);
 		
-		clockHandle = new FlxSprite().loadGraphic(Paths.image(location + 'clock hand'));
+		clockHandle = new FlxSprite().loadGraphic(Paths.image(location + 'clock-hand'));
 		clockHandle.flipX = true;
 		add(clockHandle);
 		

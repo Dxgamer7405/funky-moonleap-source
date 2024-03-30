@@ -30,7 +30,7 @@ class Clock extends FlxSpriteGroup
 		
 		for(i in 0...2)
 		{
-			var color:FlxSprite = new FlxSprite().loadGraphic(Paths.image(location + 'clock player' + Std.string(i + 1)));
+			var color:FlxSprite = new FlxSprite().loadGraphic(Paths.image(location + 'clock-player' + Std.string(i + 1)));
 			// flipin'
 			color.flipY = isDownscroll;
 			color.angle = startAngle;
@@ -41,7 +41,7 @@ class Clock extends FlxSpriteGroup
 		}
 		updateColors();
 		
-		clockHandle = new FlxSprite().loadGraphic(Paths.image(location + 'clock hand'));
+		clockHandle = new FlxSprite().loadGraphic(Paths.image(location + 'clock-hand'));
 		clockHandle.flipX = isDownscroll;
 		clockHandle.angle = startAngle;
 		add(clockHandle);

@@ -1758,8 +1758,6 @@ class PlayState extends MusicBeatState
 	function startSong():Void
 	{
 		startingSong = false;
-		addVirtualPad(NONE, A);
-		addVirtualPadCamera();
 
 		previousFrameTime = FlxG.game.ticks;
 		lastReportedPlayheadPosition = 0;
@@ -2288,6 +2286,8 @@ class PlayState extends MusicBeatState
 		
 	  #if mobile
 	  mobileControls.visible = true;
+	  addVirtualPad(NONE, A);
+	  addVirtualPadCamera();
 	  #end
 		
 		Conductor.songPosition = -(Conductor.crochet * 5);
